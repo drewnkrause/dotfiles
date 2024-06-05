@@ -1,0 +1,11 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+line-number = "relative"
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
