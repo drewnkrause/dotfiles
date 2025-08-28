@@ -1,87 +1,90 @@
 {
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "spacing": 5,
   "modules-left": [
-    "wlr/taskbar"
+    "niri/workspaces",
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
-    "pulseaudio",
+    "wireplumber",
+    "battery",
     "backlight",
     "network",
-    "battery"
+    "bluetooth",
+    "tray"
   ],
-  "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%b %d(%H:%M) 󰃰}"
+  "niri/workspaces": {
+    "format": "<span size='larger'>{icon}</span>",
+    "on-click": "activate",
+    "format-icons": {
+      "active": "\uf444",
+      "default": "\uf4c3"
+    },
+    "icon-size": 10,
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+    }
   },
-  "backlight": {
-    "format": "{percent}% {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "on-scroll-up": "light -A 1",
-    "on-scroll-down": "light -U 1"
+  "clock": {
+    "format": "{:%d.%m.%Y | %H:%M}"
+  },
+  "wireplumber": {
+    "format": "\udb81\udd7e  {volume}%",
+    "max-volume": 100,
+    "scroll-step": 5
   },
   "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󰢝",
-    "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
+    "bat": "BAT1",
+    "interval": 60,
+    "format": "{icon}  {capacity}%",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+      "\uf244",
+      "\uf243",
+      "\uf242",
+      "\uf241",
+      "\uf240"
+    ],
   },
-  "pulseaudio": {
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": "󰝟 {icon} {format_source}",
-    "format-muted": "󰝟 {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "󱠰",
-      "headset": "󰋎",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "on-click": "pavucontrol"
+  "backlight": {
+    "format": "\udb80\udcdf  {percent}%"
   },
   "network": {
-    "format": "{ifname}",
-    "format-wifi": "Connected ",
-    "format-ethernet": "{ipaddr}/{cidr} 󰈀",
-    "format-disconnected": "Disconnected 󱛅", //An empty format will hide the module.
-    "tooltip-format": "{ifname} via {gwaddr} 󰛳",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
+    "format": "",
+    "format-ethernet": "\udb83\udc9d",
+    "format-wifi": "{icon}",
+    "format-disconnected": "\udb83\udc9c",
+    "format-icons": [
+      "\udb82\udd2f",
+      "\udb82\udd1f",
+      "\udb82\udd22",
+      "\udb82\udd25",
+      "\udb82\udd28"
+    ],
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
     "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
+    "on-click": "networkmanager_dmenu"
   },
-  "wlr/taskbar": {
-    "disable-scroll": true
+  "bluetooth": {
+    "format": "\udb80\udcaf",
+    "format-disabled": "\udb80\udcb2",
+    "format-connected": "\udb80\udcb1",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "rofi-bluetooth"
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 16
   }
 }

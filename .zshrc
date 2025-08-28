@@ -21,6 +21,8 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{160} The clone has failed.%f%b"
 fi
 
+declare -A ZINIT
+ZINIT[NO_ALIASES]=1
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -52,11 +54,16 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color -a $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color -a $realpath'
 
-export EDITOR=helix
-alias hx="helix"
+export EDITOR=nvim
+# alias hx="helix"
+alias v="nvim"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH=/home/drew/.local/bin:$PATH
+
+# Fix delete key
+bindkey "^[[3~" delete-char
