@@ -29,5 +29,21 @@
         }
       ];
     };
+    nixosConfigurations.dennis = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; }; # Pass flake inputs to modules
+      modules = [
+        sops-nix.nixosModules.sops
+
+        ./hosts/dennis/configuration.nix
+        
+        # This part unifies Home Manager into the NixOS rebuild
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.drew = import ./users/drew/home.nix;
+        }
+      ];
+    };
   };
 }

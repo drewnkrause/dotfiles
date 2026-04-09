@@ -57,7 +57,7 @@
     ];
 
     shellAliases = {
-      nrs = "sudo nixos-rebuild switch --flake ~/dotfiles#laptop";
+      nrs = "sudo nixos-rebuild switch --flake ~/dotfiles";
       nrt = "sudo nixos-rebuild test --flake ~/dotfiles#laptop"; # Test without committing to boot menu
     };
   };

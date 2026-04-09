@@ -19,7 +19,7 @@
   "net.ipv6.conf.all.forwarding" = 1;
 };
 
-  networking.hostName = "Dennis"; # Define your hostname.
+  networking.hostName = "dennis"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
