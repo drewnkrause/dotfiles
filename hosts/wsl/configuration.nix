@@ -33,6 +33,7 @@
     jdt-language-server # Matches jdtls
     ripgrep
     fzf
+    wget
     
     # Text Processing & Utilities
     helix
@@ -49,6 +50,8 @@
 
   # Re-using your existing shell and secret configurations
   programs.zsh.enable = true;
+
+  programs.nix-ld.enable = true;
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
