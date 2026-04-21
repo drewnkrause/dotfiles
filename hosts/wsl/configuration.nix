@@ -29,7 +29,6 @@
     # Development & Version Control
     git
     nodejs_22 # Closest stable to your scoop nodejs24
-    python312
     jdk17 # Matches zulu17-jdk
     jdt-language-server # Matches jdtls
     ripgrep
@@ -42,7 +41,6 @@
     typst
     p7zip
     ffmpeg
-    yt-dlp
     
     # Prompt & Shell
     starship
