@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/system/caddy.nix
+      ../../modules/containers/default.nix
     ];
 
   # Bootloader.
@@ -60,6 +61,7 @@
     
     # Define the secret we want to extract
     secrets.tailscale_key = {};
+    secrets.govee_env = {};
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -70,7 +72,7 @@
     packages = with pkgs; [];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILS2l/oqurPma5pQYlXlTnV6jueGbT4uIQbgz8fSXWrE"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAMrJpTBQa9XMg8ipPWJv5k1jO3xCaUIUmuq5O+awSTU"
     ];
   };
 
@@ -79,10 +81,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    pkgs.p7zip
+    p7zip
+    sops
+    age
   ];
   # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # started in user sessions.:
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
@@ -91,7 +95,6 @@
 
   # List services that you want to enable:
   programs.zsh.enable = true;
-  virtualisation.docker.enable = true;
   services.tailscale = {
     enable = true;
     authKeyFile = config.sops.secrets.tailscale_key.path;
@@ -110,12 +113,9 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  services.logind.settings.Login.HandleLidSwitch = "ignore";
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
