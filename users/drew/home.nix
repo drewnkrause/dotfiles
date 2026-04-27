@@ -75,11 +75,18 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
+    NPM_CONFIG_PREFIX = "${config.home.homeDirectory}/.npm-global";
   };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.npm-global/bin"
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
+    withPython3 = false;
+    withRuby = false;
   };
 }
