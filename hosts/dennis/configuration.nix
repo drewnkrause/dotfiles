@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../modules/system/caddy.nix
       ../../modules/containers/default.nix
+      ../../modules/timers/fire-watcher.nix
     ];
 
   # Bootloader.
@@ -84,6 +85,9 @@
     p7zip
     sops
     age
+    (pkgs.python313.withPackages (ps: with ps; [
+      requests
+    ]))
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.:
@@ -108,6 +112,12 @@
       PermitRootLogin = "no";
       AllowUsers = [ "drew" ];
     };
+  };
+
+  services.fire-danger-watcher = {
+    enable = true;
+    ntfyTopic = "cass_fire_danger";
+    county = "Cass";
   };
 
 
