@@ -9,8 +9,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    sops-nix.url = "github:Mic92/sops-nix";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, sops-nix, nixos-wsl, ... }@inputs: {
