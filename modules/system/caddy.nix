@@ -36,15 +36,11 @@
 
       # Simple Reverse Proxies
       "ha.drewkrause.dev".extraConfig = "reverse_proxy localhost:8123";
-      "poker.drewkrause.dev".extraConfig = "reverse_proxy localhost:3000";
       "vw.drewkrause.dev".extraConfig = "reverse_proxy localhost:6574";
-
-      # Custom Port Listeners
-      "www.drewkrause.dev:3241".extraConfig = "reverse_proxy localhost:3240";
-      "www.drewkrause.dev:3078".extraConfig = "reverse_proxy localhost:3077";
+      "ss.drewkrause.dev".extraConfig = "reverse_proxy localhost:4533";
     };
   };
 
   # Open the necessary ports in the firewall
-  networking.firewall.allowedTCPPorts = [ 80 443 3241 3078 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

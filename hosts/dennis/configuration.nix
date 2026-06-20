@@ -17,9 +17,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernel.sysctl = {
-  "net.ipv4.ip_forward" = 1;
-  "net.ipv6.conf.all.forwarding" = 1;
-};
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
 
   networking.hostName = "dennis"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -49,6 +49,12 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  fileSystems."/mnt" = {
+    device = "/dev/disk/by-uuid/9d4382c6-8d82-4628-aa29-e9c1b21d0f0a"; # Replace with your UUID
+    fsType = "ext4"; # Change to btrfs, xfs, ntfs, etc., if applicable
+    options = [ "defaults" "nofail" ]; 
+};
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -63,13 +69,16 @@
     # Define the secret we want to extract
     secrets.tailscale_key = {};
     secrets.govee_env = {};
+    secrets.navidrome_env = {};
   };
 
+  users.groups.media = {};
+    
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.drew = {
     isNormalUser = true;
     description = "Drew Krause";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "media"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
@@ -120,14 +129,78 @@
     county = "Cass";
   };
 
+  services.adguardhome = {
+    enable = true;
+    openFirewall = false;
+  };
+
+  services.vaultwarden = {
+    enable = true;
+    config = {
+      ROCKET_ADDRESS = "127.0.0.1";
+      ROCKET_PORT = 6574;
+    };
+  };
+
+  users.users.navidrome.extraGroups = [ "media" ];
+  services.navidrome = {
+    enable = true;
+    openFirewall = true; # Automatically opens the default port (4533)
+    environmentFile = config.sops.secrets.navidrome_env.path;
+    settings = {
+      Address = "0.0.0.0";
+      Port = 4533;
+      MusicFolder = "/mnt/media/music";
+
+      # Optional but helpful for custom tracks
+      ScanInterval = "1m"; 
+      SessionTimeout = "24h";
+    };
+  };
+
+  services.samba = {
+    enable = true;
+  
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "Dennis SMB";
+        "netbios name" = "Dennis";
+        "security" = "user";
+        # Lock down access strictly to your home/dorm local subnets and your private Tailscale block
+        "hosts allow" = [ "192.168.1." "10.0.0." "100." "127.0.0.1" ]; 
+        "server smb encrypt" = "required"; # Force encryption over the local wire
+      };
+    
+      "Music" = {
+        "path" = "/mnt/media/music"; # Point this to your hard drive music mount
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+      
+        # The Security Safety Nets:
+        "force group" = "media";      # Any files written over SMB are forced into the media group
+        "create mask" = "0664";       # Owner/Group get full Read/Write; Others get Read-Only
+        "directory mask" = "0775";    # Allowed traversal permissions for the group
+      };
+    };
+  };
+
+  # Enable Windows Network Discovery daemon so Dennis pops up natively in your file manager sidebar
+  services.samba-wsdd.enable = true;
+
 
   security.sudo.wheelNeedsPassword = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    trustedInterfaces = [ "tailscale0" ];
+  };
 
+  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
