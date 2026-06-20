@@ -84,7 +84,6 @@
     log-driver = "journald";
     extraOptions = [
       "--network=host"
-      "--privileged"
     ];
   };
   systemd.services."podman-homeassistant" = {

@@ -139,13 +139,13 @@
     config = {
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 6574;
+      SIGNUPS_ALLOWED = "false";
     };
   };
 
   users.users.navidrome.extraGroups = [ "media" ];
   services.navidrome = {
     enable = true;
-    openFirewall = true; # Automatically opens the default port (4533)
     environmentFile = config.sops.secrets.navidrome_env.path;
     settings = {
       Address = "0.0.0.0";
