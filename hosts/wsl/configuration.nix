@@ -28,12 +28,17 @@
   environment.systemPackages = with pkgs; [
     # Development & Version Control
     git
-    nodejs_22 # Closest stable to your scoop nodejs24
-    jdk17 # Matches zulu17-jdk
+    nodejs_22 
+    corepack
+    jdk17 
     jdt-language-server # Matches jdtls
     ripgrep
     fzf
     wget
+    openssl
+    go
+    gopls
+    uv
     
     # Text Processing & Utilities
     helix
