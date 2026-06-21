@@ -4,24 +4,21 @@
   imports = [
     # The nixos-wsl module will need to be added to your flake inputs
     inputs.nixos-wsl.nixosModules.default
+
+    # Shared base configuration
+    ../../modules/system/common.nix
   ];
 
+  # WSL-specific configurations
   wsl.enable = true;
   wsl.defaultUser = "drew";
   wsl.ssh-agent.enable = true;
 
   networking.hostName = "wsl";
 
-  # Aligning with your existing locale settings
-  time.timeZone = "America/Chicago";
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # User configuration matching your other hosts
+  # User configuration matching your other hosts (extended from common)
   users.users.drew = {
-    isNormalUser = true;
-    description = "Drew Krause";
     extraGroups = [ "wheel" "docker" ];
-    shell = pkgs.zsh;
   };
 
   # Development-focused CLI tools from your scoop list
@@ -45,7 +42,6 @@
     neovim
     pandoc
     typst
-    p7zip
     ffmpeg
     
     # Prompt & Shell
@@ -54,10 +50,7 @@
   ];
 
   # Re-using your existing shell and secret configurations
-  programs.zsh.enable = true;
-
   programs.nix-ld.enable = true;
   
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.11";
 }

@@ -1,6 +1,8 @@
 { config, ... }:
 
 {
+  sops.secrets.govee_env = {};
+
   virtualisation.oci-containers.containers = {
     "govee2mqtt" = {
       image = "ghcr.io/wez/govee2mqtt:latest";
