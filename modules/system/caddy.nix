@@ -38,6 +38,7 @@
       "ha.drewkrause.dev".extraConfig = "reverse_proxy localhost:8123";
       "vw.drewkrause.dev".extraConfig = "reverse_proxy localhost:6574";
       "ss.drewkrause.dev".extraConfig = "reverse_proxy localhost:4533";
+      "an.drewkrause.dev".extraConfig = "reverse_proxy localhost:5000";
     };
   };
 

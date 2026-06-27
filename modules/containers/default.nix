@@ -7,6 +7,8 @@
     ./mc-server.nix
     # ./terraria-server.nix
     ./mcxb.nix
+    ./asknavidrome.nix
+    ./musicassistant.nix
   ];
 
   # Runtime
