@@ -2,7 +2,7 @@
 
 {
   virtualisation.oci-containers.containers."mc-server-bds" = {
-    image = "itzg/minecraft-bedrock-server";
+    image = "docker.io/itzg/minecraft-bedrock-server:latest";
     environment = {
       "DIFFICULTY" = "hard";
       "EULA" = "TRUE";
@@ -18,5 +18,8 @@
     extraOptions = [
       "--network=host"
     ];
+    labels = {
+      "io.containers.autoupdate" = "registry";
+    };
   };
 }

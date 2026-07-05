@@ -36,7 +36,9 @@
 
       # Simple Reverse Proxies
       "ha.drewkrause.dev".extraConfig = "reverse_proxy localhost:8123";
+      "ma.drewkrause.dev".extraConfig = "reverse_proxy localhost:8095";
       "vw.drewkrause.dev".extraConfig = "reverse_proxy localhost:6574";
+      "vw-test.drewkrause.dev".extraConfig = "reverse_proxy localhost:6575";
       "ss.drewkrause.dev".extraConfig = "reverse_proxy localhost:4533";
       "an.drewkrause.dev".extraConfig = "reverse_proxy localhost:5000";
     };

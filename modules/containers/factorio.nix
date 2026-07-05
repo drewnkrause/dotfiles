@@ -2,7 +2,7 @@
 
 {
   virtualisation.oci-containers.containers."factorio" = {
-    image = "factoriotools/factorio";
+    image = "docker.io/factoriotools/factorio:stable";
     environment = {
       "DLC_SPACE_AGE" = "false";
     };
@@ -14,5 +14,8 @@
       "27015:27015/tcp"
     ];
     log-driver = "journald";
+    labels = {
+      "io.containers.autoupdate" = "registry";
+    };
   };
 }

@@ -18,5 +18,8 @@
     };
     environmentFiles = [ config.sops.secrets.asknavidrome_env.path ];
     log-driver = "journald";
+    labels = {
+      "io.containers.autoupdate" = "registry";
+    };
   };
 }

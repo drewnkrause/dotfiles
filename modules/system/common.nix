@@ -24,5 +24,9 @@
     isNormalUser = true;
     description = "Drew Krause";
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEE7vqBTpuAiKT5YBr3UigtIHr3ICkccmdL+fVLl94vuAAAABHNzaDo= primary-yubikey"
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIDsd8WcigFSY7bXChRp1AU0oWp0Vz02ZJYudhKsXddFpAAAABHNzaDo= secondary-yubikey"
+    ];
   };
 }

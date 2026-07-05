@@ -19,14 +19,20 @@
       extraOptions = [
         "--network=host"
       ];
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
     };
 
     "home-assistant-eclipse-mosquitto" = {
-      image = "eclipse-mosquitto";
+      image = "docker.io/library/eclipse-mosquitto:latest";
       ports = [
         "1883:1883/tcp"
       ];
       log-driver = "journald";
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
     };
 
     "homeassistant" = {
@@ -39,6 +45,9 @@
       extraOptions = [
         "--network=host"
       ];
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
     };
   };
 }

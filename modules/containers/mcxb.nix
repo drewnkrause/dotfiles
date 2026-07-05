@@ -10,5 +10,8 @@
     extraOptions = [
       "--network=host"
     ];
+    labels = {
+      "io.containers.autoupdate" = "registry";
+    };
   };
 }
