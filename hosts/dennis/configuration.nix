@@ -37,9 +37,6 @@
   users.groups.media = {};
   users.users.drew = {
     extraGroups = [ "networkmanager" "wheel" "docker" "media" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAMrJpTBQa9XMg8ipPWJv5k1jO3xCaUIUmuq5O+awSTU"
-    ];
   };
 
   # Host-specific system packages

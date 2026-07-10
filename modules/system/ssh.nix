@@ -9,5 +9,6 @@
       PermitRootLogin = "no";
       AllowUsers = [ "drew" ];
     };
+    openFirewall = false;
   };
 }

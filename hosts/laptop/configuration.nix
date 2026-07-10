@@ -21,9 +21,6 @@
   # Host-specific user details
   users.users.drew = {
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILS2l/oqurPma5pQYlXlTnV6jueGbT4uIQbgz8fSXWrE"
-    ];
   };
 
   # Host-specific virtualization options
