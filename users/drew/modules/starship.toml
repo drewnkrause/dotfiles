@@ -1,0 +1,60 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$username\
+$hostname\
+$cmd_duration\
+$status\
+$line_break\
+$character"""
+
+[directory]
+style = "bold 39"
+truncation_length = 0
+truncate_to_repo = false
+format = "[$path]($style) "
+
+[character]
+success_symbol = "[❯](bold 76)"
+error_symbol = "[❯](bold 196)"
+
+[git_branch]
+style = "76"
+format = "[$branch]($style) "
+
+[git_status]
+style = "bold 178"
+format = "$all_status$ahead_behind"
+conflicted = "[~${count}](196) "
+ahead = "[⇡${count}](76) "
+behind = "[⇣${count}](76) "
+untracked = "[?${count}](39) "
+modified = "[!${count}](178) "
+staged = "[+${count}](178) "
+stashed = "[*${count}](76) "
+
+[cmd_duration]
+min_time = 3000
+style = "101"
+format = "took [$duration]($style) "
+
+[status]
+disabled = true
+
+[username]
+show_always = false
+style_user = "180"
+style_root = "bold 178"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = true
+style = "180"
+format = "[@$hostname]($style) "
+
+[fill]
+symbol = "─"
+style = "238"
+
