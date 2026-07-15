@@ -16,7 +16,6 @@
     zplug = {
       enable = true;
       plugins = [
-        { name = "romkatv/powerlevel10k"; tags = [ "as:theme" "depth:1" ]; }
         { name = "zsh-users/zsh-completions"; }
         { name = "Aloxaf/fzf-tab"; }
         
@@ -32,15 +31,7 @@
     };
 
     # The new consolidated way to handle .zshrc content
-    initContent = lib.mkMerge [
-      # lib.mkBefore ensures this is at the absolute top for p10k
-      (lib.mkBefore ''
-        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-        fi
-      '')
-
-      # This is the "standard" body of your .zshrc
+    initContent = 
       ''
         # Completion styling
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -50,12 +41,8 @@
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color -a $realpath'
 
         bindkey -e
-
-        # Load p10k config if it exists
-        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-      ''
-    ];
-
+      '';
+    
     shellAliases = {
       nrs = "sudo nixos-rebuild switch --flake ~/dotfiles";
       nrt = "sudo nixos-rebuild test --flake ~/dotfiles#laptop"; # Test without committing to boot menu
