@@ -38,7 +38,7 @@ stashed = "[*${count}](76) "
 [cmd_duration]
 min_time = 3000
 style = "101"
-format = "took [$duration]($style) "
+format = "[$duration]($style) "
 
 [status]
 disabled = true

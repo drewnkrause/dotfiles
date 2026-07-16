@@ -7,6 +7,7 @@
 
     # Shared base configuration
     ../../modules/system/common.nix
+    ../../modules/containers/setup.nix
   ];
 
   # WSL-specific configurations
