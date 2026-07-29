@@ -18,6 +18,11 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, sops-nix, nixos-wsl, ... }@inputs: {
@@ -58,6 +63,19 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/wsl/configuration.nix
+        sops-nix.nixosModules.sops
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.drew = import ./users/drew/home.nix;
+        }
+      ];
+    };
+    nixosConfigurations.frederick = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/frederick/configuration.nix
         sops-nix.nixosModules.sops
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
