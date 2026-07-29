@@ -10,6 +10,7 @@
     ../../modules/system/sops.nix
     ../../modules/system/ssh.nix
     ../../modules/system/tailscale.nix
+    ../../modules/system/mango.nix
   ];
 
   # Host identification
