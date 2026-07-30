@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  programs.mango.enable = true;
+  programs.mangowc.enable = true;
 }

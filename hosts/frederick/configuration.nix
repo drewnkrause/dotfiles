@@ -9,7 +9,7 @@
     ../../modules/system/nixos.nix
     ../../modules/system/sops.nix
     ../../modules/system/ssh.nix
-    ../../modules/system/tailscale.nix
+    # ../../modules/system/tailscale.nix
     ../../modules/system/mango.nix
   ];
 
@@ -21,4 +21,17 @@
   users.users.drew = {
     extraGroups = [ "networkmanager" "wheel" "docker" "media" ];
   };
+
+  hardware.graphics = {
+    enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    mesa
+    libglvnd
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 }
