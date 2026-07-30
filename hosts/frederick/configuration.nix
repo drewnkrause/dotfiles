@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
+    ../../modules/system/home-manager.nix
+
     # Hardware scan results
     ./hardware-configuration.nix
 
@@ -12,6 +14,9 @@
     # ../../modules/system/tailscale.nix
     ../../modules/system/mango.nix
   ];
+
+  home-manager.users.drew = import ../../users/drew/desktop.nix;
+
 
   # Host identification
   networking.hostName = "frederick";
@@ -29,9 +34,15 @@
   environment.systemPackages = with pkgs; [
     mesa
     libglvnd
+    xdg-desktop-portal-gtk
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
+
+  services.pipewire.enable = true
+
+  system.stateVersion = "25.05";
 }
+
