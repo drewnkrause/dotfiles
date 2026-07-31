@@ -61,6 +61,13 @@
     county = "Cass";
   };
 
+  services.terraria = {
+    enable = true;
+    port = 7777;
+    openFirewall = true;
+    worldPath = "${config.services.terraria.dataDir}/world.wld";
+  };
+  
   # Host-specific firewall settings
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
