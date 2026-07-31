@@ -15,5 +15,10 @@
     "${matchAll}".allowedUDPPorts = [ 53 ];
   };
 
+  environment.systemPackages = with pkgs; [
+    podman
+    podman-compose
+  ];
+
   virtualisation.oci-containers.backend = "podman";
 }
