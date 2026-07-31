@@ -12,7 +12,7 @@
     ../../modules/system/sops.nix
     ../../modules/system/ssh.nix
     # ../../modules/system/tailscale.nix
-    ../../modules/system/mango.nix
+    ../../modules/system/niri.nix
   ];
 
   home-manager.users.drew = import ../../users/drew/desktop.nix;
@@ -34,15 +34,20 @@
   environment.systemPackages = with pkgs; [
     mesa
     libglvnd
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gtk
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
 
-  services.pipewire.enable = true
+  services.pipewire.enable = true;
 
+  networking.networkmanager.enable = true;
+  hardware.bluetooth.enable = true;
+  services.tuned.enable = true;
+  services.upower.enable = true;
+  # environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop/portal" ];
   system.stateVersion = "25.05";
 }
 
