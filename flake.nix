@@ -1,5 +1,5 @@
 {
-  description = "Unified NixOS and Home Manager Flake";
+  description = "Drew K's dotfiles";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -18,53 +18,47 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  nixConfig = {
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
   };
 
   outputs = { self, nixpkgs, home-manager, sops-nix, nixos-wsl, ... }@inputs: {
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; }; # Pass flake inputs to modules
-      modules = [
-        sops-nix.nixosModules.sops
+    nixosConfigurations = {
+      dennis = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          sops-nix.nixosModules.sops
+          ./hosts/dennis/configuration.nix
+        ];
+      };
 
-        ./hosts/laptop/configuration.nix
-        
-        # This part unifies Home Manager into the NixOS rebuild
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.drew = import ./users/drew/home.nix;
-        }
-      ];
-    };
-    nixosConfigurations.dennis = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; }; # Pass flake inputs to modules
-      modules = [
-        sops-nix.nixosModules.sops
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          sops-nix.nixosModules.sops
+          ./hosts/wsl/configuration.nix
+        ];
+      };
 
-        ./hosts/dennis/configuration.nix
-        
-        # This part unifies Home Manager into the NixOS rebuild
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.drew = import ./users/drew/home.nix;
-        }
-      ];
-    };
-    nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/wsl/configuration.nix
-        sops-nix.nixosModules.sops
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.drew = import ./users/drew/home.nix;
-        }
-      ];
+      frederick = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          sops-nix.nixosModules.sops
+          ./hosts/frederick/configuration.nix
+        ];
+      };
     };
   };
 }
+

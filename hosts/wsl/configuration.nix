@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/system/home-manager.nix
+
     # The nixos-wsl module will need to be added to your flake inputs
     inputs.nixos-wsl.nixosModules.default
 
@@ -10,7 +12,11 @@
     ../../modules/containers/setup.nix
   ];
 
+  home-manager.users.drew = import ../../users/drew/cli.nix;
+
+
   # WSL-specific configurations
+
   wsl.enable = true;
   wsl.defaultUser = "drew";
   wsl.ssh-agent.enable = true;

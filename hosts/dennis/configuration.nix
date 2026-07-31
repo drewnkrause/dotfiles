@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
+    ../../modules/system/home-manager.nix
+
     # Hardware scan results
     ./hardware-configuration.nix
 
@@ -22,6 +24,10 @@
     ../../modules/containers/default.nix
     ../../modules/timers/fire-watcher.nix
   ];
+
+  home-manager.users.drew = import ../../users/drew/cli.nix;
+
+
 
   # Host identification
   networking.hostName = "dennis";
