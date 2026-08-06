@@ -1,11 +1,22 @@
-{ ... }:
+{ config, ... }:
 
 {
   wayland.windowManager.niri = {
     enable = true;
+
+    # include noctalia config
+    extraConfig = ''include "noctalia.kdl"'';
+    checkConfig = false; # do not check because noctalia.kdl doesn't exist (yet)
+    
     settings = {
-      prefer-no-csd = {};
-      gestures.hot-corners.off = {};
+      prefer-no-csd = { };
+      gestures.hot-corners.off = { };
+
+      cursor = {
+        xcursor-theme = "Bibata-Modern-Classic";
+        xcursor-size = 16;
+      };
+      
       input = {
         keyboard = {
           xkb = { };
@@ -15,9 +26,12 @@
         touchpad = {
           natural-scroll = { };
           click-method = "clickfinger";
+          accel-profile = "flat";
         };
 
-        mouse = { };
+        mouse = {
+          accel-profile = "flat";
+        };
         trackpoint = { };
       };
 
@@ -35,16 +49,11 @@
 
         focus-ring = {
           width = 4;
-          active-color = "#7fc8ff";
-          inactive-color = "#505050";
         };
 
         border = {
           off = { };
           width = 4;
-          active-color = "#ffc87f";
-          inactive-color = "#505050";
-          urgent-color = "#9b0000";
         };
 
         shadow = {
@@ -80,14 +89,8 @@
           spawn-sh = [ "noctalia msg panel-toggle launcher" ];
         };
         "Super+Alt+L" = {
-          _props.hotkey-overlay-title = "Lock the Screen: swaylock";
-          spawn = [ "swaylock" ];
-        };
-
-        "Super+Alt+S" = {
-          _props.allow-when-locked = true;
-          _props.hotkey-overlay-title = null;
-          spawn-sh = [ "pkill orca || exec orca" ];
+          _props.hotkey-overlay-title = "Lock the Screen: noctalia";
+          spawn-sh = [ "noctalia msg session lock" ];
         };
 
         "XF86AudioRaiseVolume" = {
@@ -101,27 +104,27 @@
         "XF86AudioMute" = {
           _props.allow-when-locked = true;
           spawn-sh = [ "noctalia msg volume-mute" ];
-         };
+        };
         "XF86AudioMicMute" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle" ];
+          spawn-sh = [ "noctalia msg mic-mute" ];
         };
 
         "XF86AudioPlay" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "playerctl play-pause" ];
+          spawn-sh = [ "noctalia msg media toggle" ];
         };
         "XF86AudioStop" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "playerctl stop" ];
+          spawn-sh = [ "noctalia msg media stop" ];
         };
         "XF86AudioPrev" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "playerctl previous" ];
+          spawn-sh = [ "noctalia msg media previous" ];
         };
         "XF86AudioNext" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "playerctl next" ];
+          spawn-sh = [ "noctalia msg media next" ];
         };
 
         "XF86MonBrightnessUp" = {
@@ -136,6 +139,10 @@
             "noctalia msg brightness-down"
           ];
         };
+
+        "Mod+V".spawn-sh = [ "noctalia msg panel-toggle clipboard" ];
+
+        "Mod+S".spawn = [ "niri-scratchpad" "target" "--spawn" "spotify" "appid" "Spotify" ];
 
         "Mod+O"._props.repeat = false;
         "Mod+O".toggle-overview = { };
@@ -273,8 +280,8 @@
         "Mod+Shift+Minus".set-window-height = "-10%";
         "Mod+Shift+Equal".set-window-height = "+10%";
 
-        "Mod+V".toggle-window-floating = { };
-        "Mod+Shift+V".switch-focus-between-floating-and-tiling = { };
+        "Mod+B".toggle-window-floating = { };
+        "Mod+Shift+B".switch-focus-between-floating-and-tiling = { };
 
         "Mod+W".toggle-column-tabbed-display = { };
 
@@ -315,6 +322,43 @@
             { open-floating = true; }
           ];
         }
+
+        # Laptop Panel (eDP-1)
+        {
+          output = {
+            _args = [ "eDP-1" ];
+            mode = "2256x1504@59.999";
+            scale = 1.5;
+            position._props = {
+              x = 227;
+              y = 437;
+            };
+          };
+        }
+        {
+          output = {
+            _args = [ "PNP(AOC) Q27G42ZE 2RMR7HA028908" ];
+            mode = "2560x1440@240.001";
+            scale = 1.0;
+            position._props = {
+              x = 3651;
+              y = 0;
+            };
+          };
+        }
+        {
+          output = {
+            _args = [ "Sceptre Tech Inc Sceptre M25 0x00000001" ];
+            mode = "1920x1080@165.000";
+            scale = 1.0;
+            position._props = {
+              x = 1731;
+              y = 360;
+            };
+          };
+        }
+        
+        { workspace._args = [ "stash" ]; }
       ];
     };
   };

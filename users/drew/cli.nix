@@ -13,8 +13,9 @@
   home.homeDirectory = "/home/drew";
   home.stateVersion = "25.11";
 
-  home.packages = [
-    pkgs.fastfetch
+  home.packages = with pkgs; [
+    fastfetch
+    nixfmt
   ];
 
   home.sessionVariables = {

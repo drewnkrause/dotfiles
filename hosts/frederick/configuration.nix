@@ -13,6 +13,7 @@
     ../../modules/system/ssh.nix
     # ../../modules/system/tailscale.nix
     ../../modules/system/niri.nix
+    ../../modules/system/noctalia-greeter.nix
   ];
 
   home-manager.users.drew = import ../../users/drew/desktop.nix;
@@ -31,6 +32,8 @@
     enable = true;
   };
 
+  services.pipewire.enable = true;
+
   environment.systemPackages = with pkgs; [
     mesa
     libglvnd
@@ -41,12 +44,15 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  services.pipewire.enable = true;
-
+  # noctalia recommended services
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
   services.tuned.enable = true;
   services.upower.enable = true;
+
+  services.fprintd.enable = true;
+  security.pam.services.login.fprintAuth = false;
+  
   # environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop/portal" ];
   system.stateVersion = "25.05";
 }

@@ -1,0 +1,284 @@
+[bar.default]
+concave_edge_corners = false
+end = [
+    "media",
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "session"
+]
+margin_ends = 0
+position = "left"
+radius_bottom_left = 0
+radius_top_left = 0
+start = [ "workspaces" ]
+
+[control_center.calendar]
+show_events_card = false
+
+[location]
+auto_locate = true
+
+[lockscreen]
+allow_empty_password = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@WL-1",
+    "lockscreen-login-box@DP-12",
+    "lockscreen-login-box@DP-11",
+    "lockscreen-login-box@DP-2",
+    "lockscreen-login-box@DP-10",
+    "lockscreen-login-box@DP-9",
+    "lockscreen-login-box@eDP-1"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-10"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1241.5
+    output = "DP-10"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-10".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-11"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 881.5
+    output = "DP-11"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-11".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-12"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1241.5
+    output = "DP-12"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-12".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 881.5
+    output = "DP-2"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-9"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 881.5
+    output = "DP-9"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-9".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 640.0
+    cy = 521.5
+    output = "WL-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@WL-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 1128.0
+    cy = 1305.5
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+[osd.kinds]
+media = false
+
+[shell]
+font_family = "JetBrainsMono NF"
+niri_overview_type_to_launch_enabled = true
+polkit_agent = true
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    compact = true
+
+[theme]
+builtin = "Gruvbox"
+community_palette = "ADW"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "niri" ]
+
+[wallpaper]
+directory = "/home/drew/Downloads"
+
+    [wallpaper.default]
+    path = "/home/drew/Downloads/background.jpg"
+
+    [wallpaper.last]
+    path = "/home/drew/Downloads/background.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/drew/Downloads/background.jpg"
+
+    [[wallpaper.favorite]]
+    builtin_palette = "Gruvbox"
+    palette_source = "builtin"
+    path = "/home/drew/Downloads/background.jpg"
+    theme_mode = "dark"
+
+[weather]
+unit = "imperial"
+
+[widget.clipboard]
+enabled = false
+
+[widget.clock]
+format = "{:%I:%M}"
+
+    [widget.clock.actions]
+    left = "panel-toggle control-center"
+
+[widget.control-center]
+enabled = false
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
+
+[widget.notifications]
+enabled = false
+
+[widget.tray]
+drawer = true
+hidden = [ "spotify" ]
