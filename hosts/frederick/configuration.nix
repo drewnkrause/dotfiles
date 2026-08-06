@@ -11,7 +11,7 @@
     ../../modules/system/nixos.nix
     ../../modules/system/sops.nix
     ../../modules/system/ssh.nix
-    # ../../modules/system/tailscale.nix
+    ../../modules/system/tailscale.nix
     ../../modules/system/niri.nix
     ../../modules/system/noctalia-greeter.nix
   ];
