@@ -27,6 +27,7 @@
           natural-scroll = { };
           click-method = "clickfinger";
           accel-profile = "flat";
+          scroll-factor = 0.3;
         };
 
         mouse = {
